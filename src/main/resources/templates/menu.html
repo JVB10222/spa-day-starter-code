@@ -6,10 +6,50 @@
     <link href="../static/css/styles.css" th:href="@{/css/styles.css}" rel="stylesheet" />
 </head>
 <body>
-<h1>My Super Fancy Spa</h1>
-<div id = "clientProfile">
-</div>
-<div id = "servicesMenu">
-</div>
+    <h1>My Super Fancy Spa</h1>
+    <h2 >My Profile</h2>
+    <div id = "clientProfile">
+        <p th:text="${name}"></p>
+        <p th:text="${typeOfSkin}"></p>
+        <p th:text="${manipedi}"></p>
+
+    </div>
+    <h2>Menu of Available Services</h2>
+
+    <div>
+        <h3>Facial Treatments</h3>
+
+    </div>
+
+    <div id = "servicesMenu">
+            <table>
+                <tr><thead>Appropriate Facials</thead></tr>
+                <th:block th:each="facial : ${appropriateFacials}">
+                    <tr>
+                        <td th:text="${facial}"></td>
+                    </tr>
+                </th:block>
+            </table>
+    </div>
+
+    <div>
+        <th:block th:if='${"manicure".equals(manipedi)} or ${"both".equals(manipedi)}'>
+            <h3 >Manicure</h3>
+            <p th:replace="fragments :: manicureDescription"></p>
+        </th:block>
+        <th:block th:if='${"pedicure".equals(manipedi)} or ${"both".equals(manipedi)}'>
+            <h3 >Pedicure</h3>
+            <p th:replace="fragments :: pedicureDescription"></p>
+        </th:block>
+
+    </div>
+    <div>
+        <footer>
+            <div class="nail-polish-box"></div>
+            <div class="red-polish-box"></div>
+            <div class="blue-polish-box"></div>
+        </footer>
+    </div>
+
 </body>
 </html>
